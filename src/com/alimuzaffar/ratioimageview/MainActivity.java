@@ -46,20 +46,7 @@ public class MainActivity extends Activity {
 						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
 						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
 						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
-						"property_2.jpg", "property_3.jpg", "property_4.jpg" });
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "land_highres_1.jpg", "land_highres_2.png", "port_highres_1.jpg", "port_highres_2.png"});
 
 		GridView grid = (GridView) findViewById(R.id.gridview);
 		grid.setAdapter(adapter);
