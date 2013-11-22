@@ -2,10 +2,9 @@ package com.alimuzaffar.ratioimageview;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.GridView;
 import android.widget.RadioGroup;
+import android.widget.RadioGroup.OnCheckedChangeListener;
 
 public class MainActivity extends Activity {
 
@@ -38,9 +37,28 @@ public class MainActivity extends Activity {
 	}
 
 	private void setupGrid(int layoutResId) {
-		Log.d("Activity", "here");
 		ArrayAdapterItem adapter = new ArrayAdapterItem(this,
 				layoutResId, new String[] { "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
+						"property_2.jpg", "property_3.jpg", "property_4.jpg", "property_1.jpg",
 						"property_2.jpg", "property_3.jpg", "property_4.jpg" });
 
 		GridView grid = (GridView) findViewById(R.id.gridview);

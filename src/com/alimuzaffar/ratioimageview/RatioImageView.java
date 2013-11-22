@@ -1,8 +1,12 @@
 package com.alimuzaffar.ratioimageview;
 
+import java.util.HashMap;
+
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 /**
@@ -11,8 +15,12 @@ import android.widget.ImageView;
  */
 final class RatioImageView extends ImageView {
 
-	static int cachedWidth = 0;
-	static int cachedHeight = 0;
+	private static HashMap<String, DimenPair> mDimenCache = new HashMap<String, DimenPair>();
+	
+	private String groupId = null;
+	
+	int cachedWidth = 0;
+	int cachedHeight = 0;
 
 	public RatioImageView(Context context) {
 		super(context);
@@ -20,32 +28,75 @@ final class RatioImageView extends ImageView {
 
 	public RatioImageView(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		
+		TypedArray a = context.obtainStyledAttributes(attrs,
+			    R.styleable.RatioImageView);
+			 
+			final int N = a.getIndexCount();
+			for (int i = 0; i < N; ++i)
+			{
+			    int attr = a.getIndex(i);
+			    switch (attr)
+			    {
+			        case R.styleable.RatioImageView_groupId:
+			            groupId = a.getString(attr);
+			            break;
+			    }
+			}
+			a.recycle();
+
 	}
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-		if (cachedWidth == 0 && cachedHeight == 0) {
-			Drawable d = getDrawable();
-			if (d != null) {
-				float ratio = (float) getMeasuredWidth()
-						/ (float) d.getIntrinsicWidth();
-				// Log.d(SquaredImageView.class.getSimpleName(),
-				// "View Width --> " + getMeasuredWidth());
-				// Log.d(SquaredImageView.class.getSimpleName(),
-				// "Image Width --> " + d.getIntrinsicWidth());
-				int imgHeight = (int) (d.getIntrinsicHeight() * ratio);
-				// Log.d(SquaredImageView.class.getSimpleName(),
-				// "Ratio --> "+ratio);
-				cachedWidth = getMeasuredWidth();
-				cachedHeight = imgHeight;
+		
+		if (cachedWidth == 0 && cachedHeight == 0 && groupId != null) {
+			if(mDimenCache.containsKey(groupId)) {
+				Log.d("RatioImageView", "Using Group Cache. Group Id="+groupId);
+				DimenPair pair = mDimenCache.get(groupId);
+				cachedWidth = pair.width;
+				cachedHeight = pair.height;
 				setMeasuredDimension(cachedWidth, cachedHeight);
-			} else {
-				// Log.d(SquaredImageView.class.getSimpleName(), "No Drawable");
-				setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+				return;
+			}
+		} 
+		
+		if (cachedWidth > 0 && cachedHeight > 0) {
+			Log.d("RatioImageView", "Using Cache. Group Id="+groupId);
+			setMeasuredDimension(cachedWidth, cachedHeight);
+			return;
+		}
+		
+		Drawable d = getDrawable();
+		if (d != null) {
+			Log.d("RatioImageView", "Setting size. Group Id="+groupId);
+			float ratio = (float) getMeasuredWidth() / (float) d.getIntrinsicWidth();
+			int imgHeight = (int) (d.getIntrinsicHeight() * ratio);
+				
+			cachedWidth = getMeasuredWidth();
+			cachedHeight = imgHeight;
+				
+			setMeasuredDimension(cachedWidth, cachedHeight);
+				
+			if(groupId != null) {
+				addToCache();
 			}
 		} else {
-			setMeasuredDimension(cachedWidth, cachedHeight);
+			setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
 		}
+	}
+	
+	private void addToCache() {
+		mDimenCache.put(groupId, new DimenPair(cachedWidth, cachedHeight));
+	}
+	
+	private class DimenPair {
+		public DimenPair(int w, int h) {
+			this.width = w;
+			this.height = h;
+		}
+		int width;
+		int height;
 	}
 }

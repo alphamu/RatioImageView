@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:riv="http://schemas.android.com/apk/res/com.alimuzaffar.ratioimageview"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -7,6 +8,7 @@
 
     <com.alimuzaffar.ratioimageview.RatioImageView
         android:id="@+id/image"
+        riv:groupId="because I want all the images in this list to be the same dimensions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
