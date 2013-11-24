@@ -1,4 +1,4 @@
-package com.alimuzaffar.ratioimageview;
+package com.alimuzaffar.ratioimageview.demo;
 
 import android.app.Activity;
 import android.os.Bundle;

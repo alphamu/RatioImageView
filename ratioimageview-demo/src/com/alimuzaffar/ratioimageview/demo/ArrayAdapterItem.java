@@ -1,4 +1,4 @@
-package com.alimuzaffar.ratioimageview;
+package com.alimuzaffar.ratioimageview.demo;
 import java.io.IOException;
 
 import android.app.Activity;

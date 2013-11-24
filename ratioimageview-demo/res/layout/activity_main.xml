@@ -19,13 +19,13 @@
             android:id="@+id/scale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Scale Image" />
+            android:text="ImageView with ScaleType=&quot;fitXY&quot;" />
 
         <RadioButton
             android:id="@+id/ratio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Preserve Ratio" />
+            android:text="Using RatioImageView" />
     </RadioGroup>
 
     <GridView
