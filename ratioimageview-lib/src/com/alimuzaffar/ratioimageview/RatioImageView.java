@@ -18,6 +18,7 @@ final class RatioImageView extends ImageView {
 	private static HashMap<String, DimenPair> mDimenCache = new HashMap<String, DimenPair>();
 	
 	private String groupId = null;
+	private boolean adjustWidth = false;
 	
 	int cachedWidth = 0;
 	int cachedHeight = 0;
@@ -41,6 +42,9 @@ final class RatioImageView extends ImageView {
 			        case R.styleable.RatioImageView_groupId:
 			            groupId = a.getString(attr);
 			            break;
+			        case R.styleable.RatioImageView_adjustWidth:
+			        	adjustWidth = a.getBoolean(attr, adjustWidth);
+			        	break;
 			    }
 			}
 			a.recycle();
@@ -73,10 +77,14 @@ final class RatioImageView extends ImageView {
 			Log.d("RatioImageView", "Setting size. Group Id="+groupId);
 			float ratio = (float) getMeasuredWidth() / (float) d.getIntrinsicWidth();
 			int imgHeight = (int) (d.getIntrinsicHeight() * ratio);
-				
-			cachedWidth = getMeasuredWidth();
-			cachedHeight = imgHeight;
-				
+			int imgWidth = (int) (d.getIntrinsicWidth() * ratio);
+			if(adjustWidth) {
+				cachedWidth = imgWidth;
+				cachedHeight = getMeasuredHeight();
+			} else {
+				cachedWidth = getMeasuredWidth();
+				cachedHeight = imgHeight;
+			}
 			setMeasuredDimension(cachedWidth, cachedHeight);
 				
 			if(groupId != null) {
@@ -89,6 +97,34 @@ final class RatioImageView extends ImageView {
 	
 	private void addToCache() {
 		mDimenCache.put(groupId, new DimenPair(cachedWidth, cachedHeight));
+	}
+	
+	/***
+	 * Change the groupId for this image view. This will trigger recalculation of dimensions.
+	 * 
+	 * @param groupId String any string or null.
+	 */
+	public void setGroupId(String groupId) {
+		if(groupId != null) {
+			mDimenCache.remove(groupId);
+		}
+		this.groupId = groupId;
+		cachedWidth = 0;
+		cachedHeight = 0;
+	}
+	
+	/***
+	 * Default: false. If set to true, we will adjust the width to maintain aspect ration instead of the height.
+	 * 
+	 * @param adjustWidth
+	 */
+	public void setAdjustWidth(boolean adjustWidth) {
+		this.adjustWidth = adjustWidth;
+		cachedWidth = 0;
+		cachedHeight = 0;
+		if(groupId != null) {
+			mDimenCache.remove(groupId);
+		}
 	}
 	
 	private class DimenPair {

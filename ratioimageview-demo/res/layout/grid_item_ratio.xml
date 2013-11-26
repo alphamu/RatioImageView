@@ -9,6 +9,7 @@
     <com.alimuzaffar.ratioimageview.RatioImageView
         android:id="@+id/image"
         riv:groupId="because I want all the images in this list to be the same dimensions"
+        riv:adjustWidth="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center" />
