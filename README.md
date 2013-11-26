@@ -4,6 +4,8 @@ RatioImageView
 An Android `ImageView` that increases the height of the image view automatically so that the image loaded in it retains it's aspect ratio.
 The aspect ratio is calculated depending on the width of the `ImageView` so only the height is adjusted to retain the aspect ratio.
 
+[RatioImageView Demo App is on Google Play Store](http://bit.ly/RatioImageView)
+
 ### Use case
 
 You want to load images into a list or grid and want the images to fill up the available space.
