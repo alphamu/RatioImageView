@@ -47,7 +47,8 @@ Copy `RatioImageView.java` and `attr.xml` to your project.
 
 		<com.alimuzaffar.ratioimageview.RatioImageView
 			android:id="@+id/image"
-			riv:groupId="because I want all the images in this list to be the same dimensions"
+			riv:groupId="Optional: because I want all the images in this list to be the same dimensions"
+			riv:adjustWidth="true|false"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:layout_gravity="center" />
@@ -57,6 +58,8 @@ Copy `RatioImageView.java` and `attr.xml` to your project.
 `groupId` is used to specify that all the RationImageViews with the same `groupId` should have the same dimension.
 The `groupId` can be any string. If you leave out `groupId` then each `RatioImageView` will have its aspect ratio calculated each time.
 This can be inefficient especially if used in a `ListView` or `GridView`.
+
+`adjustWidth` if set to true, RatioImageView will attempt to change the width to maintain aspect ratio instead of the height.
 
 All the ratios are calculated and cached so they will not be recalculated even if the images are changed. 
 In the future there will be an attribute added that will allow the ImageView to recalculate it's size when the drawable is changed.
